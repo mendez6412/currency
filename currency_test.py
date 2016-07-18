@@ -48,3 +48,21 @@ def test_is_error():
     amount2 = Currency('EUR', 4)
 
     assert_raises(DifferentCurrencyCodeError, Currency.__add__, amount1, amount2)
+
+def test_mul():
+    amount1 = Currency('EUR', 4)
+
+    result = amount1 * 3
+    result2 = amount1 * 3.0
+
+    assert result.value == 12
+    assert result2.value == 12.0
+
+def test_ony_one_variable():
+    amount1 = Currency('$300')
+    amount2 = Currency('€20.50')
+
+    assert amount1.currency_type == 'USD'
+    assert amount1.value == 300
+    assert amount2.currency_type == 'EUR'
+    assert amount2.value == 20.50
