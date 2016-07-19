@@ -18,12 +18,9 @@ class Currency():
         return self.value == other.value and self.currency_type == other.currency_type
 
     def __add__(self, other):
-        try:
-            if self.currency_type != other.currency_type:
-                raise DifferentCurrencyCodeError
-            return Currency(self.currency_type, self.value + other.value)
-        except ValueError:
-            pass
+        if self.currency_type != other.currency_type:
+            raise DifferentCurrencyCodeError
+        return Currency(self.currency_type, self.value + other.value)
 
     def __sub__(self, other):
         return Currency(self.currency_type, self.value - other.value)
